@@ -15,9 +15,9 @@
            for(i=0;i<256;i=i+1)  
                 ram[i] <= 16'd0;  
       end  
-      always @(posedge clk) begin  
+      always @(posedge clk) begin  // runs if clock changes val from 0 -> 1 or 1 -> 0
            if (mem_write_en)  
-                ram[ram_addr] <= mem_write_data;  
+                ram[ram_addr] <= mem_write_data;  // changes ram[ram_addr] to mem_write_data when clock == 1
       end  
       assign mem_read_data = (mem_read==1'b1) ? ram[ram_addr]: 16'd0;   
  endmodule   
