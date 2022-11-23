@@ -6,14 +6,15 @@ module ALUControl( ALU_Control, ALUOp, Function);
     assign ALUControlIn = {ALUOp,Function};  
     always @(ALUControlIn)  
     casex (ALUControlIn)  
-        6'b11xxxx: ALU_Control=3'b000;  //if 2 most significant bits of ALUControlIn == 11, compute ADD operation and addi instruction
-        6'b10xxxx: ALU_Control=3'b100;  
-        6'b01xxxx: ALU_Control=3'b001;  
-        6'b000000: ALU_Control=3'b000; 
-        6'b000001: ALU_Control=3'b001; 
-        6'b000010: ALU_Control=3'b010;  
-        6'b000011: ALU_Control=3'b011;  
-        6'b000100: ALU_Control=3'b100;  
+
+//left most bits are the ALU OP, the four bits are the function field 
+        6'b00xxxx: ALU_Control=3'b010;  //ALUControlIn == 0010, compute add ALU action with LW and SW instructions
+        6'b01xxxx: ALU_Control=3'b110;  //ALUControlIn == 0110, compute sub ALU action with Branch equal instruction
+        6'b100000: ALU_Control=3'b010;  //ALUControlIn == 0010, compute sub ALU action with BEQ instuction
+        6'b100010: ALU_Control=3'b110;  //ALUControlIn == 0110, compute sub ALU action with R-type
+        6'b100100: ALU_Control=3'b000;  //ALUControlIn == 0000, compute AND ALU action with R-type 
+        6'b100101: ALU_Control=3'b001;  //ALUControlIn == 0001, compute OR ALU action with R-type
+        6'b101010: ALU_Control=3'b111;  //ALUControlIn == 0111, compute set on less than ALU action with R-type
         default: ALU_Control=3'b000;    
     endcase  
  endmodule  
