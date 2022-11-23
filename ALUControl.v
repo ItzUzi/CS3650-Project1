@@ -6,7 +6,7 @@ module ALUControl( ALU_Control, ALUOp, Function);
     assign ALUControlIn = {ALUOp,Function};  
     always @(ALUControlIn)  
     casex (ALUControlIn)  
-        6'b11xxxx: ALU_Control=3'b000;  //if 2 most significant bits of ALUControlIn == 11, compute ADD operation and addi/lw/sw instruction
+        6'b11xxxx: ALU_Control=3'b000;  //if 2 most significant bits of ALUControlIn == 11, compute ADD operation and addi instruction
         6'b10xxxx: ALU_Control=3'b100;  
         6'b01xxxx: ALU_Control=3'b001;  
         6'b000000: ALU_Control=3'b000; 
@@ -22,5 +22,5 @@ module JR_Control( input[1:0] alu_op,
        input [3:0] funct,
        output JRControl
     );
-assign JRControl = ({alu_op,funct}==6'b001000) ? 1'b1 : 1'b0;
+assign JRControl = ({alu_op,funct}==6'b001000) ? 1'b1 : 1'b0; // JRControl = 1 if alu_op == 00 and funct == 1000 else = 0
 endmodule
