@@ -23,5 +23,5 @@ module JR_Control( input[1:0] alu_op,
        input [3:0] funct,
        output JRControl
     );
-assign JRControl = ({alu_op,funct}==6'b001000) ? 1'b1 : 1'b0;
+assign JRControl = ({alu_op,funct}==6'b001000) ? 1'b1 : 1'b0; // JRControl = 1 if alu_op == 00 and funct == 1000 else = 0
 endmodule
