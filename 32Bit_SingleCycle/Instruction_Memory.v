@@ -3,10 +3,9 @@ module Instruction_Memory(
 	instrn
     );//this module will focus on how to store instructions of a program
 
-input [31:0] instrn_address; //5-bit address holds 8 instructions of 32-bit width
+input [31:0] instrn_address; 
 output wire [31:0] instrn; //output will be 32-bit width aswell. 
-reg [7:0] instrn_mem [31:0];
-
+reg [7:0] instrn_mem [31:0];//declares 8 bits wide each element from a 32 element array 
 initial begin
 $readmemh("instrn_memory.mem", instrn_mem);	//using readmemh, we can load instruction memory from a mem file.
 end
