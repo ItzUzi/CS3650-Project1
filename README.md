@@ -13,3 +13,9 @@ This file grabs the 6 bit opcode and 6 bit function field as inputs from the 32 
 ## Alu_Core.v
 
 This file takes in the 2 operands and the ALU control input (which will be fed into the ALU multiplexor as the operation selection) and outputs the result of the operation. These operations are add, subtract, AND, OR, NOR, and SLT.
+
+## Alu_Top
+
+(NOTE: A top-level module contains all relevant modules) The file combines both the Alu_Control and the Alu_Core modules, which reflects the diagram below.
+
+![image](https://user-images.githubusercontent.com/73093864/205184230-14323199-955e-4493-96fb-6142063bae4b.png)
