@@ -12,7 +12,7 @@ module Register_File(
 
 input clk;
 input rst_n;
-input [4:0] read_addr1;
+input [4:0] read_addr1;  // each 5 bit address correlates to an instruction of 32-bit width
 input [4:0] read_addr2;
 input write_en;
 input [4:0] write_addr;
