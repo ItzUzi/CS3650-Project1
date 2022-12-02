@@ -69,5 +69,65 @@ Instruction_Memory instr_mem (
 .instrn (instrn[31:0])
 );
 
+Register_File regfile (
+.clk (clk),
+.rst_n (rst_n),
+.read_addr1 (instrn[25:21]),
+.read_addr2 (instrn[20:16]), 
+.write_en   (final_write_en),
+.write_addr (ctrl_write_addr),
+.write_data (ctrl_regwrite_data),
+.read_data1 (read_data1),
+.read_data2 (read_data2)
+);
+
+Sign_Extension sign_ext (
+.bits16_in (instrn[15:0]),
+.bits32_out (sign_ext_out)
+);
+
+Shifter shifter (
+.indata (sign_ext_out),
+.shift_amt (2'd2),
+.shift_left (1'b1),
+.outdata (branch_addr_offset)
+);
+
+Alu_Top alu (
+.opcode (instrn[31:26]),
+.func_field (instrn[5:0]),
+.A (read_data1),
+.B (ctrl_aluin2),
+.result (alu_result),
+.zero (zero_out)
+);
+
+Data_Memory data_mem (
+.clk		(clk),
+.address (alu_result),
+.write_en (ctrl_datamem_write_en),
+.write_data (read_data2),
+.read_data (datamem_read_data)
+);
+
+Control_Logic ctrl_logic (
+.instrn			  (instrn),
+.instrn_opcode   (instrn[31:26]),
+.address_plus_4  (address_plus_4),
+.branch_address  (branch_address),
+.ctrl_in_address (ctrl_in_address),
+.alu_result      (alu_result),
+.zero_out        (zero_out),
+.ctrl_write_en   (ctrl_write_en),
+.ctrl_write_addr (ctrl_write_addr),
+.read_data2      (read_data2),
+.sign_ext_out    (sign_ext_out),
+.ctrl_aluin2     (ctrl_aluin2),
+.ctrl_datamem_write_en (ctrl_datamem_write_en),
+.datamem_read_data (datamem_read_data),
+.ctrl_regwrite_data (ctrl_regwrite_data)
+);
+
+
 
 endmodule
