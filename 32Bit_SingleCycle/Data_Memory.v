@@ -24,7 +24,9 @@ assign read_data = {data_mem[address+3],data_mem[address+2],
 
 always @ (posedge clk)  // every time clk goes from 0 to 1
 begin
-/* If write_en is high (== 1), then write data to memory */
+/* If write_en is high (== 1), then write data to memory 
+*  Else, keep the same value in data memory
+*/
 data_mem[address]   <= write_en ? write_data[7:0]   : data_mem[address];
 data_mem[address+1] <= write_en ? write_data[15:8]  : data_mem[address+1];
 data_mem[address+2] <= write_en ? write_data[23:16] : data_mem[address+2];
