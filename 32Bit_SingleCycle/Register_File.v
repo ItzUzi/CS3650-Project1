@@ -42,32 +42,4 @@ reg_mem[write_addr] <= write_en ? write_data : reg_mem[write_addr];
 end
 end
 
-assign addr_incr = (!rst_n) ? 32'd0 : 32'd4;
-assign final_write_en = (!rst_n) ? 1'b0 : ctrl_write_en;
-
-Program_Counter prg_cntr (
-.clk (clk),
-.rst_n (rst_n),
-.in_address (ctrl_in_address),
-.out_address (out_address)	
-);
-
-Adder adder_next_addr (
-.in1 (out_address),
-.in2 (addr_incr),
-.out (address_plus_4)
-);
-
-Adder adder_branch_addr (
-.in1 (address_plus_4),
-.in2 (branch_addr_offset),
-.out (branch_address)
-);
-
-Instruction_Memory instr_mem (
-.instrn_address (out_address),
-.instrn (instrn[31:0])
-);
-
-
 endmodule
