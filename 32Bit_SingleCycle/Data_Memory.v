@@ -13,7 +13,7 @@ input [31:0] write_data;
 output wire [31:0] read_data;
 
 //Registers are addressed as per MIPS register table
-reg [7:0] data_mem [31:0];
+reg [31:0] data_mem [7:0];
 										
 initial begin
 $readmemh("data_memory.mem", data_mem);
@@ -22,8 +22,9 @@ end
 assign read_data = {data_mem[address+3],data_mem[address+2],
 		     data_mem[address+1],data_mem[address]};
 
-always @ (posedge clk)
+always @ (posedge clk)  // every time clk goes from 0 to 1
 begin
+/* If write_en is high (== 1), then write data to memory */
 data_mem[address]   <= write_en ? write_data[7:0]   : data_mem[address];
 data_mem[address+1] <= write_en ? write_data[15:8]  : data_mem[address+1];
 data_mem[address+2] <= write_en ? write_data[23:16] : data_mem[address+2];
