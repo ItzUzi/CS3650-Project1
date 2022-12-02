@@ -5,7 +5,7 @@ module Instruction_Memory(
 
 input [31:0] instrn_address; 
 output wire [31:0] instrn; //output will be 32-bit width aswell. 
-reg [31:0] instrn_mem [8:0];//declares 8 bits wide each element from a 32 element array 
+reg [31:0] instrn_mem [7:0];//declares 8 bits wide each element from a 32 element array 
 initial begin
 $readmemh("instrn_memory.mem", instrn_mem);	//using readmemh, we can load instruction memory from a mem file.
 end
