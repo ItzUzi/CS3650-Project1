@@ -26,7 +26,29 @@ This file takes in the 16 bit offset value and sign extends it to a 32 bit value
 
 ![image](https://user-images.githubusercontent.com/73093864/205186942-f88f224c-4231-447e-8d96-53270d88a0c4.png)
 
+## Control_Logic.v
 
+This file contains the logic of the control unit. The input to the control unit is the 6-bit opcode field from the instruction. The outputs of the control unit consist of three 1-bit signals that are used to control multiplexors, three signals for controlling reads and writes in the register file and data memory, a 1-bit signal used in determining whether to possibly branch, and a 2-bit control signal for the ALU.
+This is represented by the picture from zybooks below.
+
+![image](https://user-images.githubusercontent.com/73093864/205467890-b870c2a3-5c00-4324-9f52-a798ae152ff2.png)
+
+## Instruction_Memory.v
+
+This file is used to store the instructions of a program. To execute any instruction, we must start by fetching the instruction from memory. Given an address, it goes to the instruction located at that address. We will be loading instruction memory using the readmemh function from a .mem file. 
+
+## Program_Counter.v
+
+This file is used for holding the address of the current instruction. To prepare for executing the next instruction, the program counter must be incrememnted by 4 bytes so that it points at the next instruction. Since instructions execute once every clock cycle, address incrememnts to the PC happen every clock cycle, which is why it is a D flip-flop. The picture below shows the fetching of an instruction and incrementation of the PC.
+
+![image](https://user-images.githubusercontent.com/73093864/205469221-f46fd9c4-eef1-4b66-a3c0-6e81efe3ee42.png)
+
+## Register_File.v
+
+This file is used for reading and writing to registers. The register number inputs are 5 bits wide to specify one of 32 registers. We need at to read data from at most 2 register addresses (in the case of R-type), and write to 1 register address. Data input and two data output buses are each 32 bits wide, which is where we read the data from the register from.
+
+![image](https://user-images.githubusercontent.com/73093864/205467962-ff8230c2-db2d-4b24-98c0-77ba406c012a.png)
+![image](https://user-images.githubusercontent.com/73093864/205469616-b7156ad0-3941-43bc-962d-38ff93331f88.png)
 
 
 
