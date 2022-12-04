@@ -7,6 +7,8 @@ module ALUControl( ALU_Control, ALUOp, Function);
     always @(ALUControlIn)  
     casex (ALUControlIn)  
 
+/* This file is not used in the 32 bit single cycle or pipeline, but solely used for getting a deeper understanding of the mips datapath and verilog */
+
 //left most bits are the ALU OP, the four bits are the function field 
         6'b00xxxx: ALU_Control=3'b010;  //ALUControlIn == 0010, compute add ALU action with LW and SW instructions
         6'b01xxxx: ALU_Control=3'b110;  //ALUControlIn == 0110, compute sub ALU action with Branch equal instruction

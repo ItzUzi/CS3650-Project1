@@ -8,6 +8,9 @@
 
     output [31:0] mem_read_data  
  );  
+
+/* This file is not used in the 32 bit single cycle or pipeline, but solely used for getting a deeper understanding of the mips datapath and verilog */
+
       integer i;  
       reg [31:0] ram [255:0];  // declares 256 element array at 16 bits wide each element
       wire [7 : 0] ram_addr = mem_access_addr[8 : 1];//wire   

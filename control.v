@@ -3,6 +3,9 @@ module control( input[2:0] opcode,
     output reg[1:0] reg_dst,mem_to_reg,alu_op,  
     output reg jump,branch,mem_read,mem_write,alu_src,reg_write,sign_or_zero                      
 );  
+
+/* This file is not used in the 32 bit single cycle or pipeline, but solely used for getting a deeper understanding of the mips datapath and verilog */
+
     always @(*)  
     begin  
     if(reset == 1'b1) begin  
