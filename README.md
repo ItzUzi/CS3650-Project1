@@ -18,10 +18,9 @@ This file takes in the 2 operands and the ALU control input (which will be fed i
 
 ## Alu_Top.v
 
-(NOTE: A top-level module contains all relevant modules) The file instantiates and connects both the Alu_Control and the Alu_Core modules, which reflects the diagram below. This will in turn implement the ALU using the instuctions set in MIPS.
+(NOTE: A top-level module contains all relevant modules) The file combines both the Alu_Control and the Alu_Core modules, which reflects the diagram below.
 
 ![image](https://user-images.githubusercontent.com/73093864/205184230-14323199-955e-4493-96fb-6142063bae4b.png)
-
 
 ## Sign_Extension.v
 
@@ -48,7 +47,7 @@ This file is used for holding the address of the current instruction. To prepare
 
 ## Register_File.v
 
-This file is used performs the read and write operations. When they are used, the operations will be save to registers. We can define the the register number inputs, but we have choosen to be 5 bits wide to specify one of 32 registers. We need at to read data from at most 2 register addresses (in the case of R-type), and write to 1 register address. Data input and two data output buses are each 32 bits wide, which is where we read the data from the register from.
+This file is used for reading and writing to registers. The register number inputs are 5 bits wide to specify one of 32 registers. We need at to read data from at most 2 register addresses (in the case of R-type), and write to 1 register address. Data input and two data output buses are each 32 bits wide, which is where we read the data from the register from.
 
 ![image](https://user-images.githubusercontent.com/73093864/205467962-ff8230c2-db2d-4b24-98c0-77ba406c012a.png)
 ![image](https://user-images.githubusercontent.com/73093864/205469616-b7156ad0-3941-43bc-962d-38ff93331f88.png)
@@ -89,6 +88,8 @@ For example, in the picture below, notice that the operand A = 00002222 and oper
 ![image](https://user-images.githubusercontent.com/89324119/205515466-6a1a02e8-564b-4a53-b587-e7be004f2c38.png)
 
 These waves are meant to represent how the variables are read through MIPS since this time the variables are actually registers which are being read and overwritten with each opcode. We convert MIPS assembly language into its Hexadecimal format and use those files as input for these waves. Since these waves are meant to be the product of Registers instead of simple inputs, we used files to store values such as the MIPS instructions as hex, intial valuesin memory for sw and lw, and memory to be used for each register.
+
+There are some notable things to point out in this picture. First, look at how the instrn_address is incrementing by 4 each clock cycle, which is expected, since PC+4. Also, at time stamp 0 sec, notice bits16_in is 5820 in hex, and bits32_out is 00005820, showing that we have sign extended the bits from 16 to 32. This worked as expected, which was great to see all the pieces moving in clockwork to make the processor function correctly. Now, take a look at 30 second timestamp. The first instruction stated in the instrn_memory.mem file is add $t1, $t2, $t3. In hex, this is 01 2A 58 20. After loading the instruction, we see that read_addr1 and read_addr2 holds the addresses of registers $t1 and $t2. Also, read_data1 and read_data2 hold the data in the registers, which is 00000001 and 00000002 respectively. These numbers are from the reg_memory.mem file. We can see the sum of these numbers located in result. Notice how write_en is 1 at this time, meaning that data must be written to the $t3 register.The write_data, which holds the result of the operation, will be saved to the $t3 regisers, where the write_addr holds the address of the register to be written. In conclusion, we just ran the add instruction in 1 cock cycle. The in_address is 00000004, because it is ready for the next instruction. The out_address shows us the current PC address that had ran the instruction. This is just one instruction, but it shows that we were successful in making the processor and being able to have a deep understanding of how all the compnenents work together to make one instruction execute, and many others that are to come.
 
 ![image](https://user-images.githubusercontent.com/89324119/205515300-fb23e6b2-c012-4e28-89d0-9b220d6e6a91.png)
 
