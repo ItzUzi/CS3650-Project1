@@ -12,7 +12,7 @@ This file grabs the 6 bit opcode and 6 bit function field as inputs from the 32 
 Following the table above we can see that each ALU operations along with function fields each make up different instruction operations. In order to utilize the ALU action, specific ALU inputs must used to get the desired action. 
 ## Alu_Core.v
 
-This file takes in the 2 operands and the ALU control input (which will be fed into the ALU multiplexor as the operation selection) and outputs the result of the operation. These operations are add, subtract, AND, OR, NOR, and SLT.
+This file takes in the 2 operands and the ALU control input (which will be fed into the ALU multiplexor as the operation selection) and outputs the result of the operation. These operations are add, subtract, AND, OR, NOR, and SLT. ALU control inputs for each operation: 0010, 0110, 0000, 0001, 0100, 0111 respectively. If an input was not given, the default operation will be the add ALU input.
 
 ## Alu_Top.v
 
