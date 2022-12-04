@@ -16,9 +16,10 @@ This file takes in the 2 operands and the ALU control input (which will be fed i
 
 ## Alu_Top.v
 
-(NOTE: A top-level module contains all relevant modules) The file combines both the Alu_Control and the Alu_Core modules, which reflects the diagram below.
+(NOTE: A top-level module contains all relevant modules) The file instantiates and connects both the Alu_Control and the Alu_Core modules, which reflects the diagram below. This will in turn implement the ALU using the instuctions set in the MIPS instruction set.
 
 ![image](https://user-images.githubusercontent.com/73093864/205184230-14323199-955e-4493-96fb-6142063bae4b.png)
+
 
 ## Sign_Extension.v
 
@@ -45,7 +46,7 @@ This file is used for holding the address of the current instruction. To prepare
 
 ## Register_File.v
 
-This file is used for reading and writing to registers. The register number inputs are 5 bits wide to specify one of 32 registers. We need at to read data from at most 2 register addresses (in the case of R-type), and write to 1 register address. Data input and two data output buses are each 32 bits wide, which is where we read the data from the register from.
+This file is used performs the read and write operations. When they are used, the operations will be save to registers. We can define the the register number inputs, but we have choosen to be 5 bits wide to specify one of 32 registers. We need at to read data from at most 2 register addresses (in the case of R-type), and write to 1 register address. Data input and two data output buses are each 32 bits wide, which is where we read the data from the register from.
 
 ![image](https://user-images.githubusercontent.com/73093864/205467962-ff8230c2-db2d-4b24-98c0-77ba406c012a.png)
 ![image](https://user-images.githubusercontent.com/73093864/205469616-b7156ad0-3941-43bc-962d-38ff93331f88.png)
