@@ -21,25 +21,40 @@ Alu_Top uut (
 );
 
 initial begin
+	$dumpfile("test.vcd");
+	$dumpvars();
+
 	// Initialize Inputs
 	opcode = 0;
 	func_field = 0;
 	A = 0;
 	B = 0;
 	
-	#30;
+	#30; // ADD
 	A=32'h2222; B=32'h1111;
 	opcode=6'h00;func_field=6'h20; 
-	#30;
+	#30; // AND
 	opcode=6'h00;func_field=6'h24;
-	#30;
+	#30; // LW
 	opcode=6'h23;func_field=6'h00;
-	#30;
+	#30; // BEQ
 	A=31'h5555; B=32'h5555;
 	opcode=6'h04;func_field=6'h00;
-	#30;
+	#30; // SLT
 	A=32'h1111; B=32'h2222;
 	opcode=6'h00;func_field=6'h2A;
+	#30; // OR
+	opcode=6'h00;func_field=6'h25;
+	#30; // OR
+	A=32'h1111; B=32'h3333;
+	#30; // OR
+	A=32'h9210; B=32'h3338;
+	#30; // NOR
+	A=32'h1111; B=32'h2222;
+	opcode=6'h00;func_field=6'h27;
+	#30; // Subtract
+	A=32'h2222; B=32'h1111;
+	opcode=6'h00;func_field=6'h22;
 	#30;
 	$finish;
 end

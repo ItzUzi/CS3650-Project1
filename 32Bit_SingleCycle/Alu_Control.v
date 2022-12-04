@@ -20,7 +20,7 @@ begin
 	6'h27: func_code = 3'h4;  // NOR
 	6'h2A: func_code = 3'h7;  // set on less than (SLT)
 	default: func_code = 3'h0; // add when LW or SW since don't cares
-	endcase  //
+	endcase
 
 	case (opcode)
 	6'h00: alu_control = func_code;  // for all R-type instruction
