@@ -63,6 +63,19 @@ This file is used for branching. If the condition did not pass, the address in t
 ![image](https://user-images.githubusercontent.com/73093864/205513442-205147be-010c-473c-a8ef-1e3692fff64b.png)
 
 
+## Adder.v
+
+This file simply takes in 2 inputs and outputs the sum of the 2 inputs. This is used when going to the next instruction, when doing PC + 4 or when branching to go to the label address. 
+
+![image](https://user-images.githubusercontent.com/73093864/205517981-e649fadf-f452-4b46-88e5-ee441653e2f8.png)
+
+
+## Processor_Top.v
+
+This file contains the following modules: Program_Counter, Instruction_Memory, Register_File, Shifter, Alu_Top, Data_Memory, Control_Logic, and Adder to make the working 32 bit single cycle MIPS processor. The picture below encapsulates the processor we have created. 
+
+![image](https://user-images.githubusercontent.com/73093864/205517876-4c9d614d-f55a-4c4d-8e45-fb418a2f656c.png)
+
 
 ## Interpreting the waves
 
