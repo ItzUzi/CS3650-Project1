@@ -1,6 +1,6 @@
 # CS3650-Project1
 
-We have put notes BOTH in the code (as comments) and in the readme to demonstrate our understanding of the code. 
+We have put notes BOTH in the code (as comments) and in the readme to demonstrate our understanding of the code. Below, you will find a description of what each file does, and the role it plays in the MIPS datapath. The picture included will show where that file is being illustrated in the datapath.
 
 https://electrobinary.blogspot.com/2021/02/mips-processor-design-using-verilog-part1.html?m=1
 
@@ -60,6 +60,13 @@ This file is used for reading and writing to memory, hence the name data memory.
 
 This file is used for branching. If the condition did not pass, the address in the PC would just be incremented by 4. If the condition did pass, the ALU would then send a signal to the AND gate that allows the MUX the branch instruction uses to toggle, to signify that the condition passed. Since the condition passed, the PC needs to be loaded with the address the assembler assigned to the label in bits 15-0 in the instruction. When branching, the assembler just calculates the distance instruction wise, the branch needs to jump to get to the label's address. The 16 bit label is then sign extended to 32 bits, and shifted twice to convert our distance to bytes, since our address are byte-addressable. This number is then added to the incremented address of the current instruction, and is loaded into the PC.
 
+![image](https://user-images.githubusercontent.com/73093864/205513442-205147be-010c-473c-a8ef-1e3692fff64b.png)
+
+
+
+## Interpreting the waves
+
+(insert waves here)
 
 
 
