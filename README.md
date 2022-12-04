@@ -18,7 +18,7 @@ This file takes in the 2 operands and the ALU control input (which will be fed i
 
 ## Alu_Top.v
 
-(NOTE: A top-level module contains all relevant modules) The file instantiates and connects both the Alu_Control and the Alu_Core modules, which reflects the diagram below. This will in turn implement the ALU using the instuctions set in the MIPS instruction set.
+(NOTE: A top-level module contains all relevant modules) The file instantiates and connects both the Alu_Control and the Alu_Core modules, which reflects the diagram below. This will in turn implement the ALU using the instuctions set in MIPS.
 
 ![image](https://user-images.githubusercontent.com/73093864/205184230-14323199-955e-4493-96fb-6142063bae4b.png)
 
