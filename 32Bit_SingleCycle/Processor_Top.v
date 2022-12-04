@@ -24,7 +24,7 @@ wire [31:0] ctrl_aluin2;
 wire [31:0] alu_result;
 wire zero_out;
 wire [31:0] datamem_read_data;
-
+//all of these contain a 32-bit width. Those that aren't assigned anything will have the default bit.
 assign addr_incr = (!rst_n) ? 32'd0 : 32'd4;
 assign final_write_en = (!rst_n) ? 1'b0 : ctrl_write_en;
 Program_Counter prg_cntr (
