@@ -1,6 +1,6 @@
 # CS3650-Project1
 
-We have put notes BOTH in the code (as comments) and in the readme to demonstrate our understanding of the code. Below, you will find a description of what each file does, and the role it plays in the MIPS datapath. The picture included will show where that file is being illustrated in the datapath.
+We have put notes BOTH in the code (as comments) and in the readme to demonstrate our understanding of the code. Below, you will find a description of what each file does, and the role it plays in the MIPS datapath. The picture included will show where that file is being illustrated in the datapath. 
 
 https://electrobinary.blogspot.com/2021/02/mips-processor-design-using-verilog-part1.html?m=1
 
@@ -79,7 +79,9 @@ This file contains the following modules: Program_Counter, Instruction_Memory, R
 
 ## Interpreting the waves
 
-These waves are meant to show what the results of different opcodes being used with 2 variables being A and B. Here we tested out a few opcodes being ADD, OR, NOR, AND, SW, and SLT. Both variables were used as input where then the Results would show under the result variable. These waves show that the logic was implemented correctly seeing as each result was the expected outcome. Each opcode and function field corresponded to the appropriate operations allowing the program to simulate the the inputs correctly.
+These waves are meant to show what the results of different opcodes being used with 2 variables being A and B. Here we tested out a few opcodes being ADD, OR, NOR, AND, SW, and SLT, and the results were all verified to be working correctly. Both variables were used as input where then the Results would show under the result variable. These waves show that the logic was implemented correctly seeing as each result was the expected outcome. Each opcode and function field corresponded to the appropriate operations allowing the program to simulate the the inputs correctly.
+
+For example, in the picture below, notice that the operand A = 00002222 and operand B = 00001111. The function field is 20 and opcode 00 in hex, signifying to the ALU to ADD the 2 operands. Thus, the result variable output is 00003333, which is the correct sum of A+B.
 
 ![image](https://user-images.githubusercontent.com/89324119/205515466-6a1a02e8-564b-4a53-b587-e7be004f2c38.png)
 
