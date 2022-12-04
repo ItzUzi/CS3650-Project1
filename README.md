@@ -35,4 +35,6 @@ This is represented by the picture from zybooks below.
 
 ![image](https://user-images.githubusercontent.com/73093864/205467890-b870c2a3-5c00-4324-9f52-a798ae152ff2.png)
 
+## Instruction_Memory.v
 
+This file is used to store the instructions of a program. To execute any instruction, we must start by fetching the instruction from memory. Given an address, it goes to the instruction located at that address. We will be loading instruction memory using the readmemh function from a .mem file. 
