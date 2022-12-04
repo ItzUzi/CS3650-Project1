@@ -38,3 +38,9 @@ This is represented by the picture from zybooks below.
 ## Instruction_Memory.v
 
 This file is used to store the instructions of a program. To execute any instruction, we must start by fetching the instruction from memory. Given an address, it goes to the instruction located at that address. We will be loading instruction memory using the readmemh function from a .mem file. 
+
+## Program_Counter.v
+
+This file is used for holding the address of the current instruction. To prepare for executing the next instruction, the program counter must be incrememnted by 4 bytes so that it points at the next instruction. Since instructions execute once every clock cycle, address incrememnts to the PC happen every clock cycle, which is why it is a D flip-flop
+
+
