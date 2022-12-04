@@ -1,6 +1,8 @@
 # CS3650-Project1
 
-We have put notes BOTH in the code (as comments) and in the readme to demonstrate our understanding of the code. Below, you will find a description of what each file does, and the role it plays in the MIPS datapath. The picture included will show where that file is being illustrated in the datapath. 
+We have put notes BOTH in the code (as comments) and in the readme to demonstrate our understanding of the code. Below, you will find a description of what each file does, and the role it plays in the MIPS datapath. The picture included will show where that file is being illustrated in the datapath. The task was to implement the single cycle processor described in zybooks chapter 4.4. The processor described in 4.4 handles only these instructions: LW, SW, BEQ, ADD, SUB, OR, AND, SLT.
+
+"In this section, we look at what might be thought of as the simplest possible implementation of our MIPS subset. We build this simple implementation using the datapath of the last section and adding a simple control function. This simple implementation covers load word (lw), store word (sw), branch equal (beq), and the arithmetic-logical instructions add, sub, OR, and set on less than." -Zybooks chapter 4.4
 
 https://electrobinary.blogspot.com/2021/02/mips-processor-design-using-verilog-part1.html?m=1
 
