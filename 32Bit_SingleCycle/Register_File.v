@@ -21,7 +21,7 @@ input [31:0] write_data;
 output wire [31:0] read_data1;
 output wire [31:0] read_data2;
 
-reg [31:0] reg_mem [31:0]; // Holds 32 Registers
+reg [31:0] reg_mem [0:31]; // Holds 32 Registers
 
 initial begin
 $readmemh("reg_memory.mem", reg_mem); //Load initial values

@@ -21,7 +21,7 @@ Alu_Top uut (
 );
 
 initial begin
-	$dumpfile("test.vcd");
+	$dumpfile("alu_top.vcd");
 	$dumpvars();
 
 	// Initialize Inputs
