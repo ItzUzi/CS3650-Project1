@@ -9,7 +9,7 @@ https://electrobinary.blogspot.com/2021/02/mips-processor-design-using-verilog-p
 This file grabs the 6 bit opcode and 6 bit function field as inputs from the 32 bit MIPS instruction, and outputs the ALU control input based on the inputs. Since function fields are only for R-type instructions, all the R-type instruction opcodes are (000000)<sub>2</sub> and correlate to the function field. As for the I-type instructions (LW, SW, BEQ) their ALU control input is based on the opcode rather than the function code. This is because I-type (and J-type) instructions do not have a function field. The ALU control inputs, function fields, and 2 bit ALUOp listed in the code are based off the zybooks table: 
 
 ![image](https://user-images.githubusercontent.com/73093864/205182599-0f762713-963d-441d-90b2-b4a1c54eab20.png)
-
+Following the table above we can see that each ALU operations along with function fields each make up different instruction operations. In order to utilize the ALU action, specific ALU inputs must used to get the desired action. 
 ## Alu_Core.v
 
 This file takes in the 2 operands and the ALU control input (which will be fed into the ALU multiplexor as the operation selection) and outputs the result of the operation. These operations are add, subtract, AND, OR, NOR, and SLT.
@@ -49,6 +49,18 @@ This file is used for reading and writing to registers. The register number inpu
 
 ![image](https://user-images.githubusercontent.com/73093864/205467962-ff8230c2-db2d-4b24-98c0-77ba406c012a.png)
 ![image](https://user-images.githubusercontent.com/73093864/205469616-b7156ad0-3941-43bc-962d-38ff93331f88.png)
+
+## Data_Memory.v 
+
+This file is used for reading and writing to memory, hence the name data memory. The data memory unit has read and write control signals, 2 inputs for the address and write data, and an output for the read result. There are separate read and write controls, but it is important to note that ONLY one of these may be asserted on any given clock cycle. 
+
+![image](https://user-images.githubusercontent.com/73093864/205477380-23f16ed9-6699-4e44-a502-63e71d116aba.png)
+
+## Shifter.v
+
+This file is used for branching. If the condition did not pass, the address in the PC would just be incremented by 4. If the condition did pass, the ALU would then send a signal to the AND gate that allows the MUX the branch instruction uses to toggle, to signify that the condition passed. Since the condition passed, the PC needs to be loaded with the address the assembler assigned to the label in bits 15-0 in the instruction. When branching, the assembler just calculates the distance instruction wise, the branch needs to jump to get to the label's address. The 16 bit label is then sign extended to 32 bits, and shifted twice to convert our distance to bytes, since our address are byte-addressable. This number is then added to the incremented address of the current instruction, and is loaded into the PC.
+
+
 
 
 
