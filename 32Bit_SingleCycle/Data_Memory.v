@@ -13,7 +13,7 @@ input [31:0] write_data;
 output wire [31:0] read_data;
 
 //Registers are addressed as per MIPS register table
-reg [31:0] data_mem [0:7];
+reg [7:0] data_mem [0:31];
 										
 initial begin
 $readmemh("data_memory.mem", data_mem);
