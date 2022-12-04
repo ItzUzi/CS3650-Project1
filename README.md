@@ -12,7 +12,7 @@ This file grabs the 6 bit opcode and 6 bit function field as inputs from the 32 
 Following the table above we can see that each ALU operations along with function fields each make up different instruction operations. In order to utilize the ALU action, specific ALU inputs must used to get the desired action. 
 ## Alu_Core.v
 
-This file takes in the 2 operands and the ALU control input (which will be fed into the ALU multiplexor as the operation selection) and outputs the result of the operation. These operations are add, subtract, AND, OR, NOR, and SLT. ALU control inputs for each operation: 0010, 0110, 0000, 0001, 0100, 0111 respectively. If an input was not given, the default operation will be the add ALU input.
+This file takes in the 2 operands and the ALU control input (which will be fed into the ALU multiplexor as the operation selection) and outputs the result of the operation. These operations are add, subtract, AND, OR, NOR, and SLT.
 
 ## Alu_Top.v
 
@@ -81,7 +81,7 @@ This file contains the following modules: Program_Counter, Instruction_Memory, R
 
 These waves are meant to show what the results of different opcodes being used with 2 variables being A and B. Here we tested out a few opcodes being ADD, OR, NOR, AND, SW, and SLT, and the results were all verified to be working correctly. Both variables were used as input where then the Results would show under the result variable. These waves show that the logic was implemented correctly seeing as each result was the expected outcome. Each opcode and function field corresponded to the appropriate operations allowing the program to simulate the the inputs correctly.
 
-For example, in the picture below, notice that the operand A = 00002222 and operand B = 00001111. The function field is 20 and opcode 00 in hex, signifying to the ALU to ADD the 2 operands. Thus, the result variable output is 00003333, which is the correct sum of A+B.
+For example, in the picture below, notice that the operand A = 00002222 and operand B = 00001111. The function field is 20 and opcode 00 in hex, signifying to the ALU to ADD the 2 operands. Thus, the result variable output is 00003333, which is the correct sum of A+B. In another clock cycle, function field is 24 in hex, for the same operands and opcode, signifying to the ALU an AND operation. It should return a 1 in each bit position for which the corresponding bits of both operands are 1s. Thus, the result = 00000000. This is because 1 in hex is 0001 and 2 is 0010, so there will be no case where the bits both match as 1. Note that R-type instructions have an opcode of 0000000, so the input opcode does not equal this, the result will just be 00000000. In another clock cycle, the function field is 2A in hex for the same operands and opcode for the previous R-type instruction. This signifys a SLT operation. Since A < B, the result is 00000001, which is the correct result.
 
 ![image](https://user-images.githubusercontent.com/89324119/205515466-6a1a02e8-564b-4a53-b587-e7be004f2c38.png)
 
