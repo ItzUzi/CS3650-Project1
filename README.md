@@ -50,5 +50,12 @@ This file is used for reading and writing to registers. The register number inpu
 ![image](https://user-images.githubusercontent.com/73093864/205467962-ff8230c2-db2d-4b24-98c0-77ba406c012a.png)
 ![image](https://user-images.githubusercontent.com/73093864/205469616-b7156ad0-3941-43bc-962d-38ff93331f88.png)
 
+## Data_Memory.v 
+
+This file is used for reading and writing to memory, hence the name data memory. The data memory unit has read and write control signals, 2 inputs for the address and write data, and an output for the read result. There are separate read and write controls, but it is important to note that ONLY one of these may be asserted on any given clock cycle. 
+
+![image](https://user-images.githubusercontent.com/73093864/205477380-23f16ed9-6699-4e44-a502-63e71d116aba.png)
+
+
 
 
