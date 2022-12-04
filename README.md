@@ -66,11 +66,11 @@ This file is used for branching. If the condition did not pass, the address in t
 
 ## Interpreting the waves
 
-These waves are meant to show what the results of different opcodes being used with 2 variables being A and B.
+These waves are meant to show what the results of different opcodes being used with 2 variables being A and B. Here we tested out a few opcodes being ADD, OR, NOR, AND, SW, and SLT. Both variables were used as input where then the Results would show under the result variable. These waves show that the logic was implemented correctly seeing as each result was the expected outcome. Each opcode and function field corresponded to the appropriate operations allowing the program to simulate the the inputs correctly.
 
 ![image](https://user-images.githubusercontent.com/89324119/205515466-6a1a02e8-564b-4a53-b587-e7be004f2c38.png)
 
-These waves are meant to represent how the variables are read through MIPS since this time the variables are actually registers which are being read and overwritten with each opcode.
+These waves are meant to represent how the variables are read through MIPS since this time the variables are actually registers which are being read and overwritten with each opcode. We convert MIPS assembly language into its Hexadecimal format and use those files as input for these waves. Since these waves are meant to be the product of Registers instead of simple inputs, we used files to store values such as the MIPS instructions as hex, intial valuesin memory for sw and lw, and memory to be used for each register.
 
 ![image](https://user-images.githubusercontent.com/89324119/205515300-fb23e6b2-c012-4e28-89d0-9b220d6e6a91.png)
 
