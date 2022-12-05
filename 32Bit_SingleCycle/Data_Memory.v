@@ -8,7 +8,7 @@ module Data_Memory(
 	 
 input clk;  // clock
 input [31:0] address;  // register address to be loaded to or written to
-input write_en;  // 1 if data is written, 0 if data is not to be written
+input write_en;  // if 1, then write data from data mem to reg; if 0, write data from ALU to reg
 input [31:0] write_data; // 32 bit data that will be written to register address
 output wire [31:0] read_data;  // data to be loaded from reg address
 
