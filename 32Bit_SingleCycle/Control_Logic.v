@@ -37,6 +37,7 @@ output wire ctrl_jump;    // 1 if jump opcode, 0 if no jump
 
 /* If jump, lower 26 bits of jump instruction shifted left and concatenating the upper 4 bits of PC + 4, yielding a 32 bit address
 * Jump opcode: 000010
+* if opcode matches, set to 1
 */
 assign ctrl_jump = (instrn_opcode == 6'h02);
 
