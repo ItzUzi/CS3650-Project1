@@ -1,8 +1,6 @@
 # CS3650-Project1
 
-We have put notes BOTH in the code (as comments) and in the readme to demonstrate our understanding of the code. Below, you will find a description of what each file does, and the role it plays in the MIPS datapath. The picture included will show where that file is being illustrated in the datapath. The task was to implement the single cycle processor described in zybooks chapter 4.4. The processor described in 4.4 handles only these instructions: LW, SW, BEQ, ADD, SUB, OR, AND, SLT.
-
-"In this section, we look at what might be thought of as the simplest possible implementation of our MIPS subset. We build this simple implementation using the datapath of the last section and adding a simple control function. This simple implementation covers load word (lw), store word (sw), branch equal (beq), and the arithmetic-logical instructions add, sub, OR, and set on less than." -Zybooks chapter 4.4
+We have put notes BOTH in the code (as comments) and in the readme to demonstrate our understanding of the code. Below, you will find a description of what each file does, and the role it plays in the MIPS datapath. The picture included will show where that file is being illustrated in the datapath. The task was to implement the single cycle processor described in zybooks chapter 4.4. The processor described in 4.4 handles only these instructions: LW, SW, BEQ, ADD, SUB, OR, AND, SLT, and Jump.
 
 https://electrobinary.blogspot.com/2021/02/mips-processor-design-using-verilog-part1.html?m=1
 
@@ -16,7 +14,7 @@ Following the table above we can see that each ALU operations along with functio
 
 ## Alu_Core.v
 
-This file takes in the 2 operands and the ALU control input (which will be fed into the ALU multiplexor as the operation selection) and outputs the result of the operation. These operations are add, subtract, AND, OR, NOR, and SLT. ALU control inputs for each operation: 0010, 0110, 0000, 0001, 0100, 0111 respectively. If an input was not given, the default operation will be the add ALU input.
+This file takes in the 2 operands and the ALU control input (which will be fed into the ALU multiplexor as the operation selection) and outputs the result of the operation. These operations are add, subtract, AND, OR, NOR, and SLT. ALU control inputs for each operation: 0010, 0110, 0000, 0001, 0100, 0111 respectively. If an input was not given, the default operation will be the add ALU input. Jump has an opcode of 000010.
 
 ## Alu_Top.v
 
@@ -89,6 +87,38 @@ Within this file, the jump instruction is defined. The jump instruction operates
 
 For the prepending file, we are defining the destination address for the jump instruction. As stated earlier with the Jump Shifter file, jump instuction operates by replacing the lower bits. This allows the destination address for the jump instruction to form by concatenating the upper 4 btis of the current PC to the 26 bit address field in the jump instruction. Additionally a new multiplexor will be implemented to choose between the jump target, branch target, or to skip this step entirely and move on the code.  
 
+## .mem Files
+
+The files instrn_memory, reg_memory, and data_memory represent the respective memories for the MIPS datapath. For instrn_memory, we have:
+
+00: add $t1, $t2, $t3        
+04: lw $t1, $t2, 16'd4
+08: beq $t1, $t2, offset
+0C: add $t1, $t2, $t3
+10: or $t2, $t3, $t4
+14: sw $t1, $t2, offset
+18: j 0x20
+1C: add $t1, $t2, $t3  
+20: or $t2, $t3, $t4
+
+Then converting to hex we have:
+
+00: 01 2A 58 20
+04: 8D 2A 00 04
+08: 11 29 00 01
+0C: 01 2A 58 20
+10: 01 4B 60 25
+14: AD 2A 00 04
+18: 08  00 00 20
+1C: 01 2A 58 20
+20: 01 4B 60 25
+
+This is what we will put in the instrn_memory.mem file.
+
+
+For reg_memory, you can find the contents of the file here. We put some initial data in there. This is the memory where the memory location corresponds to the particular register address. 
+
+For data_memory, you can find the contents of the file here. We put some initial data in there. This memory is for load and store word.
 
 
 
