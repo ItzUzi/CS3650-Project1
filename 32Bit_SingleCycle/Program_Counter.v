@@ -5,9 +5,9 @@ module Program_Counter(
 	out_address
     );
 
-input clk, rst_n;
-input [31:0] in_address;
-output reg [31:0] out_address; 
+input clk, rst_n;  // clock, and rst_n for D flop flop
+input [31:0] in_address;  // last address in PC
+output reg [31:0] out_address; //current address in PC
 
 //here the code will run whenever value of clk or rst_n change. 
 always @ (posedge clk or negedge rst_n) //posedge - 0 to 1 and negedge - 1 to 0

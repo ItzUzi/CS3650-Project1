@@ -6,11 +6,11 @@ module Data_Memory(
 	read_data
     );
 	 
-input clk;
-input [31:0] address;
-input write_en;
-input [31:0] write_data;
-output wire [31:0] read_data;
+input clk;  // clock
+input [31:0] address;  // register address to be loaded to or written to
+input write_en;  // 1 if data is written, 0 if data is not to be written
+input [31:0] write_data; // 32 bit data that will be written to register address
+output wire [31:0] read_data;  // data to be loaded from reg address
 
 //Registers are addressed as per MIPS register table
 reg [7:0] data_mem [0:31];

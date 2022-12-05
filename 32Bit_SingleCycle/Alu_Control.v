@@ -4,10 +4,10 @@ module Alu_Control(
 	alu_control
     );
 	 
-input [5:0] opcode;
-input [5:0] func_field;
-output reg [2:0] alu_control;
-reg [2:0] func_code;
+input [5:0] opcode;  // opcode 
+input [5:0] func_field;  // function field
+output reg [2:0] alu_control;  // ALU control input;
+reg [2:0] func_code; // used to signify the ALU operation
 
 always @ (*)
 begin

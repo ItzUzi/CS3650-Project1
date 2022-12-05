@@ -16,22 +16,22 @@ module Control_Logic(
 	ctrl_regwrite_data
     );
 
-input [31:0] instrn;	 
-input [5:0] instrn_opcode;
-input [31:0] address_plus_4;
-input [31:0] branch_address;
-input [31:0] datamem_read_data;
-input [31:0] alu_result;
-input zero_out;
-input [31:0] read_data2;
-input [31:0] sign_ext_out;
+input [31:0] instrn;	 // 32 bit instruction
+input [5:0] instrn_opcode;  // 6 bit opcode 
+input [31:0] address_plus_4;  // next intsruction address
+input [31:0] branch_address;  // label address from BEQ if satisfied, load to PC
+input [31:0] datamem_read_data;  // data read from memory (register1)
+input [31:0] alu_result;  // result from ALU operation
+input zero_out;  // for BEQ
+input [31:0] read_data2;  // data read from memory (register2)
+input [31:0] sign_ext_out;  // 32 bit sign extended offset
 
-output wire [31:0] ctrl_in_address;
-output wire ctrl_write_en;
-output wire [4:0] ctrl_write_addr;
-output wire [31:0] ctrl_aluin2;
-output wire ctrl_datamem_write_en;
-output wire [31:0] ctrl_regwrite_data;
+output wire [31:0] ctrl_in_address;  // current address PC+4
+output wire ctrl_write_en;  // 1 if data is written, 0 if data is not to be written; write for regfile
+output wire [4:0] ctrl_write_addr;  // destination register address, where data will be written to
+output wire [31:0] ctrl_aluin2;  // 32 bit offset going in ALU
+output wire ctrl_datamem_write_en;  // if 1, SW; else, no SW; write to data memory
+output wire [31:0] ctrl_regwrite_data;  // 32 bitdata being written to register
 
 /*Select either branch address (for BEQ) or address+4 (for other cases) 
 * Branches only if 2 operands equal

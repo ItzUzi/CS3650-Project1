@@ -14,12 +14,12 @@ input clk;
 input rst_n;
 input [4:0] read_addr1;  // each 5 bit address correlates to an instruction of 32-bit width
 input [4:0] read_addr2; 
-input write_en;
+input write_en;  // 1 if write, 0 no write
 input [4:0] write_addr;	// address that will be rewritten within reg_mem
-input [31:0] write_data;
+input [31:0] write_data;  //data that will be saved to reg
 
-output wire [31:0] read_data1;
-output wire [31:0] read_data2;
+output wire [31:0] read_data1;  //data from reg1
+output wire [31:0] read_data2;  // data from reg2
 
 reg [31:0] reg_mem [0:31]; // Holds 32 Registers
 

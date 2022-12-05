@@ -6,11 +6,11 @@ module Alu_Core(
 	zero
     );
 
-input [31:0] A;
-input [31:0] B;
-input [2:0] alu_control;
-output reg [31:0] result;
-output wire zero;
+input [31:0] A;  // operand1
+input [31:0] B;  // operand2
+input [2:0] alu_control; // ALU control input; determines what ALU operation to do
+output reg [31:0] result;  // result of ALU operation
+output wire zero; // used for beq;
 
 assign zero = !(|result);  //logical negation bit-wise OR result; used for BEQ 
 
