@@ -18,6 +18,7 @@ output wire [31:0] outdata;  //value after shift
 */
 always @ (posedge clk)  // every time clk goes from 0 to 1
 begin
-assign outdata = ctrl_jump ? {instrn_address[31:28], indata} : indata;  //concatenate bits
+    /* If jump is asserted, concatenate bits and load new address to PC; else, load PC+4 to PC*/
+assign outdata = ctrl_jump ? {instrn_address[31:28], indata} : instrn_address;  //concatenate bits
 end
 endmodule
