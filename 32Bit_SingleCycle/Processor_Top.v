@@ -24,6 +24,7 @@ wire [31:0] ctrl_aluin2;
 wire [31:0] alu_result;
 wire zero_out;
 wire [31:0] datamem_read_data;
+wire ctrl_jump;
 //all of these contain a 32-bit width. Those that aren't assigned anything will have the default bit.
 assign addr_incr = (!rst_n) ? 32'd0 : 32'd4; //decimal 0 with 32 bit size : decimal 4 with 32 bit size
 assign final_write_en = (!rst_n) ? 1'b0 : ctrl_write_en; //binary 0 with 1 bit size.
@@ -107,7 +108,8 @@ Control_Logic ctrl_logic (
 .ctrl_aluin2     (ctrl_aluin2),
 .ctrl_datamem_write_en (ctrl_datamem_write_en),
 .datamem_read_data (datamem_read_data),
-.ctrl_regwrite_data (ctrl_regwrite_data)
+.ctrl_regwrite_data (ctrl_regwrite_data),
+.ctrl_jump (ctrl_jump)
 );
 
 endmodule

@@ -13,7 +13,8 @@ module Control_Logic(
 	ctrl_aluin2,
 	ctrl_datamem_write_en,
 	datamem_read_data,
-	ctrl_regwrite_data
+	ctrl_regwrite_data,
+	ctrl_jump
     );
 
 input [31:0] instrn;	 // 32 bit instruction
@@ -32,6 +33,12 @@ output wire [4:0] ctrl_write_addr;  // destination register address, where data 
 output wire [31:0] ctrl_aluin2;  // 32 bit offset going in ALU
 output wire ctrl_datamem_write_en;  // if 1, SW; else, no SW; write to data memory
 output wire [31:0] ctrl_regwrite_data;  // 32 bitdata being written to register
+output wire ctrl_jump;    // 1 if jump opcode, 0 if no jump
+
+/* If jump, lower 26 bits of jump instruction shifted left and concatenating the upper 4 bits of PC + 4, yielding a 32 bit address
+* Jump opcode: 000010
+*/
+assign ctrl_jump = (instrn_opcode == 6'h02);
 
 /*Select either branch address (for BEQ) or address+4 (for other cases) 
 * Branches only if 2 operands equal
