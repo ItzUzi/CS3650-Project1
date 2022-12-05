@@ -91,26 +91,42 @@ For the prepending file, we are defining the destination address for the jump in
 
 The files instrn_memory, reg_memory, and data_memory represent the respective memories for the MIPS datapath. For instrn_memory, we have:
 
-00: add $t1, $t2, $t3        
+00: add $t1, $t2, $t3   
+
 04: lw $t1, $t2, 16'd4
+
 08: beq $t1, $t2, offset
+
 0C: add $t1, $t2, $t3
+
 10: or $t2, $t3, $t4
+
 14: sw $t1, $t2, offset
+
 18: j 0x20
+
 1C: add $t1, $t2, $t3  
+
 20: or $t2, $t3, $t4
 
 Then converting to hex we have:
 
 00: 01 2A 58 20
+
 04: 8D 2A 00 04
+
 08: 11 29 00 01
+
 0C: 01 2A 58 20
+
 10: 01 4B 60 25
+
 14: AD 2A 00 04
+
 18: 08  00 00 20
+
 1C: 01 2A 58 20
+
 20: 01 4B 60 25
 
 This is what we will put in the instrn_memory.mem file.
