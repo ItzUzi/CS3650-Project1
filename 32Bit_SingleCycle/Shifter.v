@@ -7,7 +7,7 @@ module Shifter(
 
 input [31:0] indata;   //value before shift
 input [1:0] shift_amt;  //amt to shift
-input shift_left;
+input shift_left;      // if 1, shift, else, no shift
 output wire [31:0] outdata;  //value after shift
 
 /* Used for BEQ instruction; if true, branch to the instruction
