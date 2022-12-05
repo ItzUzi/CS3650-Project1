@@ -25,6 +25,8 @@ wire [31:0] alu_result;
 wire zero_out;
 wire [31:0] datamem_read_data;
 wire ctrl_jump;
+wire jump_addr_28bit[27:0];
+wire
 //all of these contain a 32-bit width. Those that aren't assigned anything will have the default bit.
 assign addr_incr = (!rst_n) ? 32'd0 : 32'd4; //decimal 0 with 32 bit size : decimal 4 with 32 bit size
 assign final_write_en = (!rst_n) ? 1'b0 : ctrl_write_en; //binary 0 with 1 bit size.
@@ -115,10 +117,16 @@ Control_Logic ctrl_logic (
 Jump_Shifter jump_shifter (    //append 00 to instruction[25-0]
 .indata (instrn[25:0]),
 .shift_amt (2'd2),
-.shift_left (ctrl_jump),
-.outdata (branch_addr_offset)
+.shift_left (ctrl_jump),  // or use 1'b1 like shifter
+.outdata (jump_addr_28bit)
 );
 
 // need to prepending bits 31-28 of PC+4, to get destination address of jump
+Prepend_JumpAddr (
+.indata (jump_addr_28bit),
+.instrn_address (address_plus_4),
+.ctrl_jump (ctrl_jump),
+.outdata (ctrl_in_address)
+)
 
 endmodule
