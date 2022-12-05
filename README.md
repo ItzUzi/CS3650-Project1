@@ -82,6 +82,15 @@ This file contains the following modules: Program_Counter, Instruction_Memory, R
 
 ## Jump_Shifter.v
 
+Within this file, the jump instruction is defined. The jump instruction operates by replacing the lower 28 bits of the PC with the lower 26 bits of the instruction that is shifted to the left by 2 bits. This is done by adding 00 as the 2 lower-order bits. The branch instruction may function in a similar way, but the jump inscturction always jumps, and no subtraction will be needed. This means that the ALU will not be utilized.  
+
+
+## Prepend_JumpAddr.v
+
+For the prepending file, we are defining the destination address for the jump instruction. As stated earlier with the Jump Shifter file, jump instuction operates by replacing the lower bits. This allows the destination address for the jump instruction to form by concatenating the upper 4 btis of the current PC to the 26 bit address field in the jump instruction. Additionally a new multiplexor will be implemented to choose between the jump target, branch target, or to skip this step entirely and move on the code.  
+
+
+
 
 ## Interpreting the waves
 
