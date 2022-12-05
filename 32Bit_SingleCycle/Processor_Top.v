@@ -112,4 +112,13 @@ Control_Logic ctrl_logic (
 .ctrl_jump (ctrl_jump)
 );
 
+Jump_Shifter jump_shifter (    //append 00 to instruction[25-0]
+.indata (instrn[25:0]),
+.shift_amt (2'd2),
+.shift_left (ctrl_jump),
+.outdata (branch_addr_offset)
+);
+
+// need to prepending bits 31-28 of PC+4, to get destination address of jump
+
 endmodule
