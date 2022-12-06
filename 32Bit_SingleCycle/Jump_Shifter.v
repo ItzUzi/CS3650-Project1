@@ -6,7 +6,7 @@ module Jump_Shifter(
     );
 
 input [25:0] indata;   //value before shift
-input [1:0] shift_amt;  //amt to shift
+input [1:0] shift_amt;  //amount to shift (1)
 input shift_left;      // if 1, shift, else, no shift
 output wire [27:0] outdata;  //value after shift
 
