@@ -39,7 +39,7 @@ output wire ctrl_jump;    // 1 if jump opcode, 0 if no jump
 * Jump opcode: 000010
 * if opcode matches, set to 1
 */
-assign ctrl_jump = (instrn_opcode == 6'h02);
+assign ctrl_jump = (instrn_opcode==6'h02);
 
 /*Select either branch address (for BEQ) or address+4 (for other cases) 
 * Branches only if 2 operands equal
